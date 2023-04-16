@@ -20,7 +20,7 @@ Si vous êtes dans un envirnnement windows nous vous recommandons d'installer gi
 .(https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe)si vous utilisez une architecture 64 bits
 ### Dépendances PIP
 
-Une fois que vous avez configuré et exécuté votre invite de commande, installez les dépendances en accédant au répertoire `/projetPython` et exécuté:
+Une fois que vous avez configuré et exécuté votre invite de commande, installez les dépendances en accédant au répertoire racine du projet et exécuté:
 
 ```bash
 pip install -r requirements.txt
