@@ -41,7 +41,7 @@ Cela installera tous les packages requis que nous avons sélectionnés dans le f
 
 ## Exécution du serveur
 
-Assurer que l'invite de commande soit ouvert dans le dossier `projetPython` pour pouvoir faire les tests 
+Assurer que l'invite de commande soit ouvert à la racine du projet pour pouvoir faire les tests 
 
 Pour exécuter le serveur sous Linux ou Mac, exécutez :
 
