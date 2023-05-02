@@ -20,7 +20,7 @@ Si vous êtes dans un envirnnement windows nous vous recommandons d'installer gi
 .(https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe)si vous utilisez une architecture 64 bits
 ### Dépendances PIP
 
-Une fois que vous avez configuré et exécuté votre invite de commande, installez les dépendances en accédant au répertoire racine du projet et exécuté:
+Une fois que vous avez configuré et exécuté votre invite de commande, installez les dépendances en accédant au répertoire `/projetPython` et exécuté:
 
 ```bash
 pip install -r requirements.txt
@@ -41,9 +41,9 @@ Cela installera tous les packages requis que nous avons sélectionnés dans le f
 
 ## Exécution du serveur
 
-Assurer que l'invite de commande soit ouvert à la racine du projet pour pouvoir faire les tests 
+Assurer que l'invite de commande soit ouvert dans le dossier `projetPython` pour pouvoir faire les tests 
 
-Pour exécuter le serveur sous Linux ou Mac, exécutez :
+Pour exécuter le serveur sous Linux ou Mac, exécutez :
 
 ```bash
 export FLASK_APP=gestion_livre.py
@@ -66,10 +66,10 @@ Définir la variable `FLASK_APP` sur `gestion_livre` indique à flask d'utiliser
 
 Démarrage
 
-URL de base : à l'heure actuelle, cette application ne peut être exécutée que localement et n'est pas hébergée en tant qu'URL de base. L'application principale est hébergée par défaut, http://localhost:5000 ; qui est défini comme proxy dans la configuration frontale.
+URL de base : à l'heure actuelle, cette application ne peut être exécutée que localement et n'est pas hébergée en tant qu'URL de base. L'application principale est hébergée par défaut, http://localhost:5000 ; qui est défini comme proxy dans la configuration frontale.
 
 ## Error Handling
-Les erreurs sont renvoyées sous forme d'objets JSON au format suivant :
+Les erreurs sont renvoyées sous forme d'objets JSON au format suivant :
 
 {
 
@@ -81,7 +81,7 @@ Les erreurs sont renvoyées sous forme d'objets JSON au format suivant :
 }
 
 
-L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
+L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
 
 . 400: Bad request 
 
@@ -147,6 +147,7 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
          si l'id n'existe pas une erreur 404 est renvoyé, au cas contraire elle affiche après suppression la catégorie supprimé,les catégories restantes et leurs nombres. 
 ```
         EXTRAIT: curl -X DELETE http://localhost:5000/categories/3
+
 {
     "Catégorie suprimée": {
         "Identifiant": 3,
@@ -173,12 +174,14 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
 #### PATCH/categories/id
   ``` 
   GENERAL:
+
   Cette route permet de modifier le libellé d'une catégorie grâce à son id;
   si l'id n'est pas trouvé une erreur 404 est renvoyé,au cas où l'id est trouvé mais les données fournies en json ne sont pas conformes une erreur 400 est renvoyée.Au cas contraire  la catégorie 
   est renvoyée avec les modifications effectuées
   ``` 
   ``` 
   EXTRAIT.....Pour la modification
+
   curl -X PATCH http://localhost:5000/categories/6 -H "Content-Type:application/json" -d '{"libelle":"Aventure"}'
   
 {
@@ -188,6 +191,7 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
          },
       "Etat de la modification": "succes"
 }
+
   ``` 
 #### POST/categories
   ``` 
@@ -252,6 +256,7 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
     
   ```    
     EXTRAIT: curl http://localhost:5000/livres/44
+
 {
   "Etat de la recherche": "succes",
   "Livre recherche": {
@@ -290,6 +295,7 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
   ],
   "Nombre de livre": 1
 }
+
 ```
 
 #### DELETE/livres/id
@@ -298,6 +304,7 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
          Cette route permet de supprimer un livre grâce à son id;
          si l'id n'existe pas une erreur 404 est renvoyé, au cas contraire elle affiche après suppression le livre supprimé,les livres restants et leurs nombres. 
 ```
+
         EXTRAIT: curl -X DELETE http://localhost:5000/livres/44
 {
     "Catégorie suprimée": {
@@ -344,6 +351,7 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
   },
   "Nombre restant": 1
 }
+
 ```
 #### PATCH/livres/id
 ```
@@ -353,8 +361,10 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
   est renvoyé avec les modifications effectuées
 ```
 ```
+
   EXTRAIT.....Pour la modification
    curl -X PATCH http://localhost:5000/livres/40 -H "Content-Type:application/json" -d '{"Editeur":"Africa","Date de la publication":"1658-05-12"}'  
+
 {
   "Etat de la modification": "success",
   "Livre modifie": {
@@ -376,8 +386,11 @@ L'API renvoie trois types d'erreurs en cas d'échec des requêtes :
     Cette route est utilisée pour créer des livres en envoyant lles données en format json si les données envoyées ne sont pas conformes une erreur 400 est renvoyée au cas contraire le livre est enregistré est renvoyée avec le nombre total de livre
    
 ```
+
     EXTRAIT.....Pour l'ajout
+
     curl -X POST http://localhost:5000/livres -H "Content-Type:application/json" -d '{"Code ISBN":"CAVO","Titre":"Candide","Date de la publication":"1478-10-02","Auteur":"Voltaire","Editeur":"kalo","Identifiant Categorie":6}'
+
 {
   "Etat de l'ajout": "success",
   "Livre ajoute": {
